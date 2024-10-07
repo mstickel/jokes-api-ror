@@ -1,0 +1,23 @@
+<h1>Jokes List</h1>
+
+<table>
+<thead>
+    <tr>
+        <th>ID</th>
+        <th>Joke</th>
+        <th colspan=2>Options</th>
+    </tr>
+</thead>
+<% @jokes.each do |joke| %>
+    <tr>
+        <td><%= joke.id %></td>
+        <td><%= joke.body %></td>
+        <td><%= link_to "Edit", edit_joke_path(id: joke.id) %></td>
+        <td><%= link_to "Delete", joke_path(id: joke.id), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+          } %></td>
+    </tr>
+<% end %>
+</table>
+<p><%= link_to "Add New Joke", new_joke_path %></p>
